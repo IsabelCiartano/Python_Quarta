@@ -1,8 +1,11 @@
-l=[3,3.14,10,"ciao",True]
-#il ciclo for pythonic, cioè come si fa il ciclo for in python 
+def main()
+    l=[3,3.14,10,"ciao",True]
+    #il ciclo for pythonic, cioè come si fa il ciclo for in python 
 
-for elemento in l:
-    print(elemento)
+    for elemento in l:
+        print(elemento)
 
-for carattere in "ciao":
-    print(carattere)
+    for carattere in "ciao":
+        print(carattere)
+if __name__ ="__main__":
+    main()
