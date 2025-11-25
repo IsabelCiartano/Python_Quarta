@@ -15,13 +15,16 @@ def main():
     righe=file.readlines()#righe è una lista di stringhe 
     file.close
     elenco={}
+    data={}
     mac=[]
     vendors=[]
+    date=[]
     for riga in righe[1:]:#riga è una stringa 
         campi=riga.split(",")#campi è una lista di stringhe 
         mac.append(campi[0])
         vendors.append(campi[1])
-    for m,v in zip(mac,vendors):
+        date.append(campi[-1])
+    for m,v,d in zip(mac,vendors,date):
         chiave=m.upper()
         valore=v
         elenco[chiave]=valore
