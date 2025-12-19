@@ -3,15 +3,11 @@
 # - n numero di partite
 # - nome primo giocatore (quello che vince se esce pari)
 # - nome secondo giocatore.
-
 # 1) Per simulare le partite usiamo un dizionario:
 # esempio nel caso n = 3
-d = {"Nome giocatore 1" : [3,2,5], "Nome giocatore 2" : [1,2,4]}
-
+#d = {"Nome giocatore 1" : [3,2,5], "Nome giocatore 2" : [1,2,4]}
 # Le singole giocate sono generate con random.randint()
-
 # 2) Creare una lista che contiene i nomi dei vincitori per ogni partita e stamparla.
-
 # Ipotesi: il primo giocatore vince se esce pari, il secondo se esce dispari.
 
 import random
