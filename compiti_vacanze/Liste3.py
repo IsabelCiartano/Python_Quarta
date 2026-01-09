@@ -5,7 +5,7 @@ def secondoMassimo(valori):
     for v in valori:
         if v>massimo:
             massimo=v
-        if v<minimo:
+        if v<minimo: 
             minimo=v
     #assegno a secondo massimo il minimo 
     secondoMassimo=minimo
