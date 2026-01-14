@@ -1,8 +1,8 @@
 print("apertura file...")
 file=open("./testo.txt","r")
 print("lettura file....")
-testo = file.read()
-file.close()
+testo = file.read()#legge ogni carattere
+file.close() 
 print("file letto!")
 
 d={"a":0,"b":0,"c":0,"d":0,"e":0,"f":0,
