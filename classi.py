@@ -1,5 +1,6 @@
 import math
 import turtle
+#pigame libreria per vidogioco
 
 class Punto:
     # costruttore
