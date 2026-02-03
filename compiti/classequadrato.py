@@ -47,7 +47,7 @@ class Quadrato:
                 random.randint(0, 255)
             )#variabile tuple con 3 colori 
             #se è su una lista colori=["red","yellow",...]
-            #si usa random.choice()per scegliere un colore dalla lista 
+            #si usa random.choice(colori) per scegliere un colore dalla lista 
 
             q = Quadrato(colore, x, y, lato)
             q.disegnaQuadrato()
