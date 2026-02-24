@@ -23,7 +23,8 @@ class Rete():
                     amici_comuni.append(amico2)
         return(amici_comuni)
     def suggerisci_amici(self,utente):
-        pass
+        for amico in utente.amici:
+            if (amico)
 
 class Utente():
     def __init__(self,nome):
