@@ -17,8 +17,13 @@ class Rete():
     def amici_in_comune(self,utente1,utente2):
         #restituisce la liste degli amici in comune tra la lista degli amici di utente 1 e utente 2
         amici_comuni=[]
-        
+        for amico1 in utente1.amici:
+            for amico2 in utente2.amici:
+                if(amico2==amico1):
+                    amici_comuni.append(amico2)
+        return(amici_comuni)
     def suggerisci_amici(self,utente):
+        pass
 
 class Utente():
     def __init__(self,nome):
@@ -44,8 +49,12 @@ def main():
 
     print(social_network)
     social_network.aggiungi_amicizia(mario,luca)
+    social_network.aggiungi_amicizia(mario,andrea)
     print(mario)
     print(luca)
+    comune=social_network.amici_in_comune(luca,andrea)
+    lista=[amico.nome for amico in comune]
+    print(lista)
 
 if __name__=="__main__":
     main()
