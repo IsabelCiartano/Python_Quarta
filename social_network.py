@@ -14,7 +14,12 @@ class Rete():
             utente2.aggiungi_amico(utente1)
         else:
             print("almeno uno dei due utenti non è iscritto")
-    
+    def amici_in_comune(self,utente1,utente2):
+        #restituisce la liste degli amici in comune tra la lista degli amici di utente 1 e utente 2
+        amici_comuni=[]
+        
+    def suggerisci_amici(self,utente):
+
 class Utente():
     def __init__(self,nome):
         self.nome=nome
