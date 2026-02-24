@@ -24,6 +24,7 @@ class Utente():
     def __str__(self):
         #stampa utente e i sui contatti(=amici)
         lista_nomi=[amico.nome for amico in self.amici]# lista di stringhe 
+        #list comprehension 
         return f"nome utente:{self.nome} amici:{lista_nomi}"
 
 def main():
@@ -37,6 +38,9 @@ def main():
     social_network.iscrivi_utente(mario)
 
     print(social_network)
+    social_network.aggiungi_amicizia(mario,luca)
+    print(mario)
+    print(luca)
 
 if __name__=="__main__":
     main()
