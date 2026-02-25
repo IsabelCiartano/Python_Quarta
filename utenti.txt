@@ -1,0 +1,3 @@
+alice:mario,claudia,luca
+claudia:alice,luca
+giorgio:

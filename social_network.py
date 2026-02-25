@@ -23,8 +23,34 @@ class Rete():
                     amici_comuni.append(amico2)
         return(amici_comuni)
     def suggerisci_amici(self,utente):
+        suggeriti=[]
         for amico in utente.amici:
-            if (amico)
+            for a in amico.amici:
+                if a not in utente.amici and a!=utente:
+                    suggeriti.append(a)
+        return suggeriti
+    def carica_da_file(self, file_nome):
+        file = open(file_nome, "r")
+        righe = file.readlines()
+        file.close() 
+
+    
+        utenti_dict = {}
+        amicizie = {}
+
+        for riga in righe:
+            fields = riga.split(":")
+            nome = fields[0]
+            utente = Utente(nome)
+            self.iscrivi_utente(utente)
+            utenti_dict[nome] = utente 
+            amicizie[nome] = fields[1].split(",") if len(fields) > 1 else []
+
+        for nome, lista_amici in amicizie.items():
+            for nome_amico in lista_amici:
+                if nome_amico in utenti_dict:
+                    self.aggiungi_amicizia(utenti_dict[nome], utenti_dict[nome_amico])
+            
 
 class Utente():
     def __init__(self,nome):
@@ -37,6 +63,10 @@ class Utente():
         lista_nomi=[amico.nome for amico in self.amici]# lista di stringhe 
         #list comprehension 
         return f"nome utente:{self.nome} amici:{lista_nomi}"
+
+
+
+
 
 def main():
     social_network=Rete()
@@ -56,6 +86,11 @@ def main():
     comune=social_network.amici_in_comune(luca,andrea)
     lista=[amico.nome for amico in comune]
     print(lista)
+    suggeriti=social_network.suggerisci_amici(luca)
+    suggeriti=[amico.nome for amico in suggeriti]
+    print(suggeriti)
+    social_network.carica_da_file("./utenti.txt")
+    print (social_network)
 
 if __name__=="__main__":
     main()
