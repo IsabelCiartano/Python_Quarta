@@ -14,6 +14,7 @@ class Rete():
             utente2.aggiungi_amico(utente1)
         else:
             print("almeno uno dei due utenti non è iscritto")
+            #se uno dei due utenti non esiste creo l'utente mancante o entrambi  
     def amici_in_comune(self,utente1,utente2):
         #restituisce la liste degli amici in comune tra la lista degli amici di utente 1 e utente 2
         amici_comuni=[]
@@ -29,12 +30,36 @@ class Rete():
                 if a not in utente.amici and a!=utente:
                     suggeriti.append(a)
         return suggeriti
+
+   def suggerisci_amici_nuovo(self, utente):
+    listaSuggeriti = []
+
+    # Raccolgo amici degli amici
+    for amico in utente.amici:
+        for amico2 in amico.amici:
+            if amico2 not in utente.amici and amico2 != utente:
+                listaSuggeriti.append(amico2)
+
+    # Conteggio delle occorrenze
+    conteggio = {}
+    for persona in listaSuggeriti:
+        if persona in conteggio:
+            conteggio[persona] += 1
+        else:
+            conteggio[persona] = 1
+
+    # Tengo solo quelli con più di una occorrenza
+    suggeriti_finali = []
+    for persona, numero in conteggio.items():
+        if numero > 1:
+            suggeriti_finali.append(persona)
+
+    return suggeriti_finali
+
     def carica_da_file(self, file_nome):
         file = open(file_nome, "r")
         righe = file.readlines()
         file.close() 
-
-    
         utenti_dict = {}
         amicizie = {}
 
@@ -64,9 +89,10 @@ class Utente():
         #list comprehension 
         return f"nome utente:{self.nome} amici:{lista_nomi}"
 
-
-
-
+def stampa_nomi(lista):
+    #serve per stampare i nomi delle liste e non gli oggetti 
+    listaNomi=[n.nome for n in lista ]
+    return listaNomi
 
 def main():
     social_network=Rete()
