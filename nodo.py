@@ -17,7 +17,7 @@ class Nodo:
                 self.dx=Nodo(valore)
             else:
                 self.dx.inserisci(valore)
-    
+     
     def cerca(self, valore):
         if valore == self.valore:
             return True

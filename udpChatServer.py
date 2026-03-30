@@ -1,13 +1,18 @@
 import socket
 
 IP_PORTA=("localhost",12345)
-BUFFER_SIZE 4096
+BUFFER_SIZE =4096
 SEPARATORE="|"
+LOG_LEVEL="DEBUG"
+
+def log(stringa,tipo):
+    if (tipo.upper=="DEBUG") and (LOG_LEVEL=="DEBUG"):
+        print(f"[Debug]:{stringa}")
+    
 
 def main():
 
-    rubrica={"luca":("192.168.100.2",54617)
-    }
+    rubrica={}
     #creazione di un socket ipv4 e UDP
     s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
@@ -18,11 +23,18 @@ def main():
         #il server deve capire se il messaggio ricevuto è di hello oppure di chat 
         #se è un messaggio di hello allora aggiorna rubrica 
         #se è un messaggio di chat allora lo inoltra 
-        print(f"ricevuto {dati.decode()} da {ip_porta_mittente}")
-        campi=dati.decode().split(SEPARATORE)
-        dest,mess=campi
-        if dati.decode().upper=="EXIT":
-            break
+        log(f"ricevuto {dati.decode()} da {ip_porta_mittente}","DEBUG")
+        if dati[:5].decode().upper() == "HELLO":
+            hello=dati.decode().split(",")
+            nick=hello[1]
+            rubrica[nick]=ip_porta_mittente
+            print(rubrica)
+            continue
+        else:
+            campi=dati.decode().split(SEPARATORE)
+            dest,mess=campi
+            if mess.decode().upper=="EXIT":
+                break
 
 if __name__ =="__main__":
     main()
