@@ -1,6 +1,20 @@
 def addZeros(stringa):
     """ la funzione prende in input una stringa di al massimo 4 carratteri e
      aggiunge degli zero davanti fino a ottenere 4 caratteri """
+    return "0" * (4 * len(string)) + string
+def remove_zeros(string):
+    """prende in unput stringhe di 4 caratteri e toglie gli 0 a sinistra"""
+    count=0
+    for c in string:
+        if c ==0:
+            counter+=1
+        else:
+            break 
+    if counter==4:
+        return "0"
+    else:
+        return string[counter:]
+
 
 
 def shortToExtended(ip):
@@ -25,11 +39,72 @@ def shortToExtended(ip):
         print (ip1)
         print(ip2)
         ip_nogap=ip1+missing_groups+ip2
+    return ip_nogap
+def extended_to_short(indirizzo):
+    """
+    assumiamo di avere al massimo un solo gruppo di 0 consecutivi 
+    cerca gruppi di 0 consecutivi e lo sostituisce con ::
+    """
+    abbreviato=""
+    divisioni=indirizzo.split(":")
+    for d in divisioni:
+        n=0
+        while n<len(d) and d[n] == "0": 
+            n+=1
+        if n == 4:
+            d=""  
+        else:
+            d=d[n:]
+        abbreviato=abbreviato+d+":"
+    return abbreviato[:-1]
+
+def extended(ip):
+    ipv6=""
+    ip_list=ip.split(":")
+    n=len(ip_list)
+    if n == 8:
+        ip_list=[remove_zeros(group) for group in ip_list]
+
+        #for k in range(n):
+           # ip_list[k]=remove_zeros(ip_list[k])
+
+        print(ip_list)
+        counter=0
+        start=-1
+
+        for k,group in enumerate (ip_list)  :
+            if group =="0" :
+                if start==-1:start=k
+                counter+=1
+            elif counter !=0:
+                break
+        print(start, counter)
+
+
+        #for k in range(n):
+           # if ip_list[k]=="0":
+               # if start==-1:start=k
+               # counter+=1
+            #elif counter !=0:
+                #break
+        #print(start, counter)
+
+        if counter < 2:
+            ipv6=":".join(ip_list)
+        else:
+            ip1=":".join(ip_list[:start])
+            ip2=":".join(ip_list[start+counter:])
+            ipv6=ip1+"::"+ip2
+    return ipv6
+    
+
 
 def main():
     ipv6_short="FDEC:74::B0FF:0:FFF0"
     ipv6_Extended=shortToExtended(ipv6_short)
     print(ipv6_Extended)
+    ipv6_short=extended(ipv6_Extended)
+    print(ipv6_short)
 
 
 

@@ -19,6 +19,6 @@ def main():
     t1.start()#metodo del genitore che va a chiamare run ed esegue cosi il thread 
     t2.start()
     t1.join()#operazione che riposta il filo del thread su quello principale
-    t2.join() 
+    t2.join()#è bloccante aspetta che il thread finisca
 if __name__=="__main__":
     main()

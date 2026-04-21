@@ -12,7 +12,7 @@ def main():
     # PORTA: numero a 16 bit che indirizza un processo nel computer
     # LE PORTE < 1024 SI CHIAMANO WELL_KNOWN (NON USARE)
 
-    IP_PORTA = ("192.168.1.119", 15000)
+    IP_PORTA = ("127.0.0.1",9000)
     s.bind(IP_PORTA) # metodo per legare
 
     # ORA IL SOCKET PUO' ESSERE USATO PER COMUNICARE

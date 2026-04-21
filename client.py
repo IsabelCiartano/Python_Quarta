@@ -9,7 +9,7 @@ def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # crea un socket
 
     messaggio = input("->")
-    DESTINATARIO = ("192.168.1.106", 13000) # è un processo
+    DESTINATARIO = ("127.0.0.1", 13000) # è un processo
 
     s.sendto(messaggio.encode(), DESTINATARIO) 
 

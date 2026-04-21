@@ -2,7 +2,7 @@
 
 import socket
 BUFFER_SIZE = 4096
-IP_PORTA = ("127.0.0.1", 13000)
+IP_PORTA = ("127.0.0.1", 9000)
 
 def main():
   
