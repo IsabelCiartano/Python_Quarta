@@ -18,7 +18,7 @@ while True:
     stringa = dati.decode() 
     print(f"Ho ricevuto {stringa} da {ip_porta_mittente}")
     fields=stringa.split(",")
-    if(fields[0]=="SHORT"):
+    if(fields[0].upper()=="SHORT"):
         ipv6=extendedToShort(fields[1])
     else:
         ipv6=shortToExtended(fields[1])
