@@ -13,6 +13,16 @@ def isOK(stringa):
         ok=False
         return ok
 
+def command(t,cmd,v):
+    if cmd.lower()=="forward":
+        t.forward(v)
+    if cmd.lower()=="backward":
+        t.backward(v)
+    if cmd.lower()=="right":
+        t.right(v)
+    if cmd.lower()=="left":
+        t.left(v)
+
 def main():
     #alphabot.forward(100)
 #il server deve ricevere messaggi con questo formato:
@@ -36,18 +46,18 @@ def main():
             ok="ok"
             s.sendto(ok.encode(), ip_porta_mittente) 
             fields=stringa.split(",")
-            if fields[0].lower()=="forward":
-                alphabot.forward(int(fields[1]))
-            if fields[0].lower()=="backward":
-                alphabot.backward(int(fields[1]))
-            if fields[0].lower()=="right":
-                alphabot.right(int(fields[1]))
-            if fields[0].lower()=="left":
-                alphabot.left(int(fields[1]))
+            v=int(fields[1])
+            if v>180:
+                v=180
+            if v<-180:
+                v=-180
+            command(alphabot,fields[0],v)  
         else:
             ok="not ok"
             s.sendto(ok.encode(), ip_porta_mittente) 
-    s.close()
+    print("chiusura server...")
     screen.mainloop()
+    s.close()
+   
 if __name__=="__main__":
     main()

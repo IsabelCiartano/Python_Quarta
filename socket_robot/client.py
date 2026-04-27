@@ -7,7 +7,7 @@ def main():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) 
 
     messaggio = input("->")
-    DESTINATARIO = ("127.0.0.1", 9000) 
+    DESTINATARIO = ("192.168.1.101", 13000) 
 
     s.sendto(messaggio.encode(), DESTINATARIO) 
     while True:
@@ -16,6 +16,7 @@ def main():
         print(f"Ho ricevuto {stringa} da {ip_porta_mittente}")
         messaggio2=input("->")
         s.sendto(messaggio2.encode(), DESTINATARIO) 
+        
         if messaggio2.upper()=="EXIT":
             break
     s.close() 
