@@ -17,26 +17,33 @@ class myThread(Thread):
     def __init__(self,nome):
         super().__init__()
         self.nome=nome
+
+    def incrementa(self,c):#funzione della classe , esempio di funzione interna a una classe 
+    #nel metodo ce self come paramentro mentre nella funzione no 
+            temp = c
+            time.sleep(0.0001)
+            c = temp + 1
+            return c
+
     def run(self):
         global contatore
         for i in range(100):
             #sezione critica
-            temp = contatore
-            time.sleep(0.0001)
-            contatore = temp + 1
-            #fine sezione critica 
+            contatore=self.incrementa(contatore)
+            #fine sezione critica
+        print(f"{self.nome} :{contatore}")
+   
 
 def main():
     n_thread=10
     lista_nomi=["t"+str(n) for n in range (n_thread)]
     threads=[myThread(nome) for nome in lista_nomi]
-    for t in threads:
+    for t in threads: #per lanciarli al contrario threads[::-1]
         t.start()
-        #print(t.nome)
     for t in threads:
         t.join()
 
-    print(contatore)
+    print(f"risultato finale{contatore}")
 if __name__=="__main__":
     main()
 
