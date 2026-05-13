@@ -9,10 +9,12 @@
 
 #per fare una varibile globale all'interno di run devo scrivere global name= 0
 
-from threading import Thread
+from threading import Thread,Lock
 import time 
 
 contatore=0# inizializzare una varibile fuori da classi / funzioni = variabile Globale
+
+lucchetto=Lock() #mutex globale pk tutti i thread devono vederlo 
 class myThread(Thread):
     def __init__(self,nome):
         super().__init__()
@@ -28,9 +30,10 @@ class myThread(Thread):
     def run(self):
         global contatore
         for i in range(100):
-            #sezione critica
-            contatore=self.incrementa(contatore)
-            #fine sezione critica
+            with lucchetto:
+                #sezione critica
+                contatore=self.incrementa(contatore)
+                #fine sezione critica
         print(f"{self.nome} :{contatore}")
    
 
@@ -43,7 +46,7 @@ def main():
     for t in threads:
         t.join()
 
-    print(f"risultato finale{contatore}")
+    print(f"risultato finale {contatore}")
 if __name__=="__main__":
     main()
 
